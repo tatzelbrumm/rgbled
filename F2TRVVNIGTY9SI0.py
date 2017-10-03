@@ -9,14 +9,13 @@ bluePin = 13  #GPIO.BOARD format
 
 def blink(pin):
     GPIO.setmode(GPIO.BOARD)
-    
     GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, GPIO.HIGH)
+    GPIO.output(pin, GPIO.LOW)
     
 def turnOff(pin):
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, GPIO.LOW)
+    GPIO.output(pin, GPIO.HIGH)
     
 def redOn():
     blink(redPin)
