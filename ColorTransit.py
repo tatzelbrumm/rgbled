@@ -17,22 +17,34 @@ def turnOff(pin):
     GPIO.setup(pin, GPIO.OUT)
     GPIO.output(pin, GPIO.HIGH)
     
-print("""Ensure the following GPIO connections: R-11, G-13, B-15
-Colors: Red, Green, Blue, Yellow, Cyan, Magenta, and White
-Use the format: color on/color off""")
+print("""Ensure the following GPIO connections: R-11, G-13, B-15""")
 
 def main():
-    GPIO.cleanup()
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(redPin, GPIO.OUT)
-    GPIO.setup(greenPin, GPIO.OUT)
-    GPIO.setup(bluePin, GPIO.OUT)
+    pins= (redPin, greenPin, bluePin)
+    for pin in pins:
+        GPIO.setup(pin, GPIO.OUT)
     r= GPIO.PWM(redPin, 50)
     g= GPIO.PWM(greenPin, 50)
     b= GPIO.PWM(bluePin, 50)
-    r.start(100)
-    g.start(100)
-    b.start(100)
+    rgb=[r,g,b]
+    try:
+        for c in rgb:
+            c.start(100)
+        i=0
+        while True:
+            ca= rgb[i]
+            i= (i+1)%3
+            cz= rgb[i]
+            for dc in range(0, 101, 1):
+                cz.ChangeDutyCycle(100-dc)
+                ca.ChangeDutyCycle(0+dc)
+                time.sleep(0.1)
+            time.sleep(5)
+    except KeyboardInterrupt:
+        for c in rgb:
+            c.stop()
+        GPIO.cleanup()
     return
 
 main()
