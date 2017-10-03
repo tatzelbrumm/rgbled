@@ -7,16 +7,6 @@ redPin = 11   #Set to appropriate GPIO
 greenPin = 13 #Should be set in the 
 bluePin = 15  #GPIO.BOARD format
 
-def blink(pin):
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, GPIO.LOW)
-    
-def turnOff(pin):
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, GPIO.HIGH)
-    
 print("""Ensure the following GPIO connections: R-11, G-13, B-15""")
 
 def main():
