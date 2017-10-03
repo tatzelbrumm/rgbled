@@ -22,6 +22,7 @@ Colors: Red, Green, Blue, Yellow, Cyan, Magenta, and White
 Use the format: color on/color off""")
 
 def main():
+    GPIO.cleanup()
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(redPin, GPIO.OUT)
     GPIO.setup(greenPin, GPIO.OUT)
